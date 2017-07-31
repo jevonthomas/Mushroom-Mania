@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mushroom Mania</title>
+</head>
+<body ng-app="MushroomMania">
+
+<div ng-controller="mushroomCtrl">
+	<nav>
+		<input type="text" ng-model="mushroomSearch" placeholder="Enter mushroom name here">
+
+		<div>
+			<label>Non-Poisonous</label>
+			<input type="radio" ng-model="canIeat" value="edible">
+
+			<label>Poisonous</label>
+			<input type="radio" ng-model="canIeat" value="inedible">
+		</div>
+
+		<h1>Mushroom Mania</h1>
+	</nav>
+
+	<div ng-switch="canIeat">
+		<h2>Mushroom List</h2>
+		<ul ng-switch-when="edible">
+				<li ng-repeat="mushroom in mushroomList" ng-show="{{mushroom.edible}} == true">
+					<h3>{{mushroom.name.toUpperCase()}}</h3>
+					<p ng-show="{{mushroom.edible}} == true">{{mushroom.description}}</p>
+				</li>
+			</span>
+		</ul>
+		<ul ng-switch-when="inedible">
+				<li ng-repeat="mushroom in mushroomList" ng-show="{{mushroom.edible}} == false">
+					<h3>{{mushroom.name.toUpperCase()}}</h3>
+					<p ng-show="{{mushroom.edible}} == false">{{mushroom.description}}</p>
+				</li>
+			</span>
+		</ul>
+	</div>
+</div>
+
+
+
+  <script type="text/javascript" src="lib/node_modules/angular/angular.min.js"></script>
+  <script type="text/javascript" src="lib/node_modules/angular-route/angular-route.min.js"></script>
+	<!-- app -->
+	<script src="app/app.js"></script>
+	<!-- providers -->
+	<script src="app/factories/mushroom-factory.js"></script>
+	<!-- controllers -->
+	<script src="app/controllers/mushroomCtrl.js"></script>
+
+
+</body>
+</html>
